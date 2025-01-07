@@ -30,14 +30,19 @@ inputs:
   description:
     description: "Description of the upload"
     required: true
+  private_key_path:
+    description: "path of private key for cert"
+    required: true
+  certificate_path:
+    description: "path of cert"
+    required: true
 
 runs:
   using: "composite"
   steps:
     - run: |
-        ls $GITHUB_WORKSPACE
-        pwd
-        export
+        chmod +x $GITHUB_ACTION_PATH/entrypoint.sh
+        $GITHUB_ACTION_PATH/entrypoint.sh
       shell: bash
       env:
         USERNAME: ${{ inputs.username }}
@@ -49,5 +54,5 @@ runs:
         UPLOAD_URL: ${{ inputs.upload_url }}
         SSL_ID: ${{ inputs.ssl_id }}
         DESCRIPTION: ${{ inputs.description }}
-        PRIVATE_KEY_PATH: $GITHUB_WORKSPACE/.github/actions/upload-ssl/_.fscenter.cn.key
-        CERTIFICATE_PATH: $GITHUB_WORKSPACE/.github/actions/upload-ssl/_.fscenter.cn.pem
+        PRIVATE_KEY_PATH: ${{ inputs.private_key_path }}
+        CERTIFICATE_PATH: ${{ inputs.certificate_path }}
