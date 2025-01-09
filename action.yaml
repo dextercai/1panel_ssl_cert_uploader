@@ -1,6 +1,9 @@
 name: Upload SSL to 1panel
 description: Upload SSL to 1panel
-
+branding:
+  icon: lock
+  color: blue
+  
 inputs:
   username:
     description: "Login username"
