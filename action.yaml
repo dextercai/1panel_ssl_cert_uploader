@@ -5,25 +5,9 @@ branding:
   color: blue
   
 inputs:
-  username:
-    description: "Login username"
-    required: true
-  password:
-    description: "Login password"
-    required: true
-  entrance_code:
-    description: "Entrance code"
-    required: true
-  mfa_token:
-    description: "MFA token, if available"
-    required: false
-    default: ""
   login_url:
     description: "Login URL"
     required: true
-  mfa_login_url:
-    description: "MFA login URL"
-    required: false
   upload_url:
     description: "Upload URL"
     required: true
@@ -39,6 +23,9 @@ inputs:
   certificate_path:
     description: "path of cert"
     required: true
+  api_key:
+    description: "api key for 1panel"
+    required: true
 
 runs:
   using: "composite"
@@ -48,14 +35,10 @@ runs:
         $GITHUB_ACTION_PATH/entrypoint.sh
       shell: bash
       env:
-        USERNAME: ${{ inputs.username }}
-        PASSWORD: ${{ inputs.password }}
-        ENTRANCE_CODE: ${{ inputs.entrance_code }}
-        MFA_TOKEN: ${{ inputs.mfa_token }}
         LOGIN_URL: ${{ inputs.login_url }}
-        MFA_LOGIN_URL: ${{ inputs.mfa_login_url }}
         UPLOAD_URL: ${{ inputs.upload_url }}
         SSL_ID: ${{ inputs.ssl_id }}
         DESCRIPTION: ${{ inputs.description }}
         PRIVATE_KEY_PATH: ${{ inputs.private_key_path }}
         CERTIFICATE_PATH: ${{ inputs.certificate_path }}
+        API_KEY: ${{ inputs.api_key }}
