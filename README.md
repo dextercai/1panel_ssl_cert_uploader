@@ -2,7 +2,8 @@
 
 a action for upload ssl cert from github actions to 1panel
 
-please use 1panel v1.10.24+
+please use 1panel v1.10.24+    
+also compatible with 1panel v2                                                         
 
 ## Acknowledgements
 
